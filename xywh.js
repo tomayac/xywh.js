@@ -98,7 +98,7 @@ var mediaFragments = (function(window, document) {
     // Media item is an image
     } else {
       mediaItem.setAttribute('style',
-          'width:' + w + '; '+
+          'width:' + w + '; ' +
           'height:' + h + '; ' +
           'background:url(' + mediaItem.src + ') ' + // background-image
           'no-repeat ' + // background-repeat
@@ -120,7 +120,7 @@ var mediaFragments = (function(window, document) {
      * Initializes the media fragment application process. Pretty useless for now,
      * but may prove useful in the future for more advanced intermediate steps.
      */
-    apply: function init() {
+    apply: function apply() {
       getAllMediaItems();
     }
   };
