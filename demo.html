@@ -48,34 +48,49 @@
       <h2>Videos</h2>
       #t=17#xywh=130,90,150,150
       <br/>
-      <video controls loop autoplay muted src="chrome.webm#t=17#xywh=130,90,150,150"></video>
+      <video controls loop autoplay muted>
+        <source src="chrome.mp4#t=17#xywh=130,90,150,150"/>
+        <source src="chrome.ogv#t=17#xywh=130,90,150,150"/>
+        <source src="chrome.webm#t=17#xywh=130,90,150,150"/>
+      </video>
       <br/>
       #xywh=percent:25,25,50,50
       <br/>
-      <video controls loop autoplay muted src="chrome.webm#t=17#xywh=percent:25,25,50,50"></video>
+      <video controls loop autoplay muted>
+        <source src="chrome.mp4#t=17#xywh=percent:25,25,50,50"/>
+        <source src="chrome.ogv#t=17#xywh=percent:25,25,50,50"/>
+        <source src="chrome.webm#t=17#xywh=percent:25,25,50,50"/>
+      </video>
+
       <br/>
-      #xywh=100,100,50,50 (&lt;source&gt;)
+      #xywh=200,200,50,50 (&lt;source&gt;)
       <br/>
       <video controls loop autoplay muted >
-        <source src="chrome.webm#t=17#xywh=100,100,50,50">
+        <source src="chrome.mp4#t=17#xywh=200,200,50,50"/>
+        <source src="chrome.ogv#t=17#xywh=200,200,50,50"/>
+        <source src="chrome.webm#t=17#xywh=200,200,50,50"/>
       </video>
       <br/>
       #xywh=percent:25,25,50,50 (&lt;source&gt;)
       <br/>
       <video controls loop autoplay muted >
-        <source src="chrome.webm#t=17#xywh=percent:25,25,50,50">
+        <source src="chrome.mp4#t=17#xywh=percent:25,25,50,50"/>
+        <source src="chrome.ogv#t=17#xywh=percent:25,25,50,50"/>
+        <source src="chrome.webm#t=17#xywh=percent:25,25,50,50"/>
       </video>
       <br/>
       Normal
       <br/>
       <video controls loop autoplay muted >
-        <source src="chrome.webm#t=17">
+        <source src="chrome.mp4#t=17"/>
+        <source src="chrome.ogv#t=17"/>
+        <source src="chrome.webm#t=17"/>
       </video>
     </div>
     <div>
       <strong>Media item credits:</strong>
       <a href="http://placekitten.com/500">Cat</a>,
-      <a href="http://www.html5rocks.com/en/tutorials/video/basics/Chrome_ImF.webm">Chrome logo</a>.
+      <a href="http://www.html5rocks.com/en/tutorials/video/basics/">Chrome logo</a>.
       <br>
       <strong>Copyleft:</strong>
       <a href="https://github.com/tomayac/xywh.js">xywh.js</a> was created by
