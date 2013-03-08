@@ -34,48 +34,63 @@
       <h2>Images</h2>
       #xywh=160,120,320,240
       <br/>
-      <img src='cat.jpg#xywh=160,120,320,240'>
+      <img src="./demo_assets/cat.jpg#xywh=160,120,320,240">
       <br/>
       #xywh=percent:25,25,50,50
       <br/>
-      <img src='cat.jpg#xywh=percent:25,25,50,50'>
+      <img src="./demo_assets/cat.jpg#xywh=percent:25,25,50,50">
       <br/>
       Normal
       <br/cat>
-      <img src='cat.jpg'>
+      <img src="./demo_assets/cat.jpg">
     </div>
     <div class="videos">
       <h2>Videos</h2>
       #t=17#xywh=130,90,150,150
       <br/>
-      <video controls loop autoplay muted src="chrome.webm#t=17#xywh=130,90,150,150"></video>
+      <video controls loop autoplay muted>
+        <source src="./demo_assets/chrome.mp4#t=17#xywh=130,90,150,150"/>
+        <source src="./demo_assets/chrome.ogv#t=17#xywh=130,90,150,150"/>
+        <source src="./demo_assets/chrome.webm#t=17#xywh=130,90,150,150"/>
+      </video>
       <br/>
       #xywh=percent:25,25,50,50
       <br/>
-      <video controls loop autoplay muted src="chrome.webm#t=17#xywh=percent:25,25,50,50"></video>
+      <video controls loop autoplay muted>
+        <source src="./demo_assets/chrome.mp4#t=17#xywh=percent:25,25,50,50"/>
+        <source src="./demo_assets/chrome.ogv#t=17#xywh=percent:25,25,50,50"/>
+        <source src="./demo_assets/chrome.webm#t=17#xywh=percent:25,25,50,50"/>
+      </video>
+
       <br/>
-      #xywh=100,100,50,50 (&lt;source&gt;)
+      #xywh=200,200,50,50 (&lt;source&gt;)
       <br/>
       <video controls loop autoplay muted >
-        <source src="chrome.webm#t=17#xywh=100,100,50,50">
+        <source src="./demo_assets/chrome.mp4#t=17#xywh=200,200,50,50"/>
+        <source src="./demo_assets/chrome.ogv#t=17#xywh=200,200,50,50"/>
+        <source src="./demo_assets/chrome.webm#t=17#xywh=200,200,50,50"/>
       </video>
       <br/>
       #xywh=percent:25,25,50,50 (&lt;source&gt;)
       <br/>
       <video controls loop autoplay muted >
-        <source src="chrome.webm#t=17#xywh=percent:25,25,50,50">
+        <source src="./demo_assets/chrome.mp4#t=17#xywh=percent:25,25,50,50"/>
+        <source src="./demo_assets/chrome.ogv#t=17#xywh=percent:25,25,50,50"/>
+        <source src="./demo_assets/chrome.webm#t=17#xywh=percent:25,25,50,50"/>
       </video>
       <br/>
       Normal
       <br/>
       <video controls loop autoplay muted >
-        <source src="chrome.webm#t=17">
+        <source src="./demo_assets/chrome.mp4#t=17"/>
+        <source src="./demo_assets/chrome.ogv#t=17"/>
+        <source src="./demo_assets/chrome.webm#t=17"/>
       </video>
     </div>
     <div>
       <strong>Media item credits:</strong>
       <a href="http://placekitten.com/500">Cat</a>,
-      <a href="http://www.html5rocks.com/en/tutorials/video/basics/Chrome_ImF.webm">Chrome logo</a>.
+      <a href="http://www.html5rocks.com/en/tutorials/video/basics/">Chrome logo</a>.
       <br>
       <strong>Copyleft:</strong>
       <a href="https://github.com/tomayac/xywh.js">xywh.js</a> was created by

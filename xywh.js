@@ -79,14 +79,16 @@ var mediaFragments = (function(window, document) {
     // Media item is a video
     if (fragment.mediaType === 'video') {
       var wrapper = document.createElement('div');
-      wrapper.style.overflow = 'hidden';
-      wrapper.style.width = w;
-      wrapper.style.height = h;
-
-      mediaItem.style.transform =
-          'translate(' + x + ',' + y + ')';
-      mediaItem.style['-webkit-transform'] =
-          'translate(' + x + ',' + y + ')';
+      wrapper.setAttribute('style',
+          'overflow:hidden;' +
+          'width:' + w + ';' +
+          'height:' + h + ';' +
+          'padding:0;' +
+          'margin:0;' +
+          'border:none;');
+      mediaItem.setAttribute('style',
+          'transform:translate(' + x + ',' + y + ');' +
+          '-webkit-transform:translate(' + x + ',' + y + ');');
       // Evil DOM operations
       mediaItem.parentNode.insertBefore(wrapper, mediaItem);
       wrapper.appendChild(mediaItem);
@@ -98,8 +100,8 @@ var mediaFragments = (function(window, document) {
     // Media item is an image
     } else {
       mediaItem.setAttribute('style',
-          'width:' + w + '; '+
-          'height:' + h + '; ' +
+          'width:' + w + ';' +
+          'height:' + h + ';' +
           'background:url(' + mediaItem.src + ') ' + // background-image
           'no-repeat ' + // background-repeat
           x + ' ' + y + ';'); // background-position
@@ -120,7 +122,7 @@ var mediaFragments = (function(window, document) {
      * Initializes the media fragment application process. Pretty useless for now,
      * but may prove useful in the future for more advanced intermediate steps.
      */
-    apply: function init() {
+    apply: function apply() {
       getAllMediaItems();
     }
   };

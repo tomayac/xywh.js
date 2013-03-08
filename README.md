@@ -8,6 +8,11 @@ Demo
 
 See http://tomayac.github.com/xywh.js/demo.html
 
+Demo
+====
+
+See http://tomayac.github.com/xywh.js/demo.html
+
 Usage
 =====
 
