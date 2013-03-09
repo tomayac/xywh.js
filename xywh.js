@@ -85,6 +85,7 @@ var mediaFragments = (function(window, document) {
           'height:' + h + ';' +
           'padding:0;' +
           'margin:0;' +
+          'border-radius:0;' +
           'border:none;');
       mediaItem.setAttribute('style',
           'transform:translate(' + x + ',' + y + ');' +
