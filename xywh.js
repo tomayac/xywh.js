@@ -109,14 +109,14 @@ var mediaFragments = (function(window, document) {
     // Media item is a video
     if (fragment.mediaType === 'video') {
       var wrapper = document.createElement('div');
-      wrapper.style.cssText = 'overflow:hidden;' +
+      wrapper.style.cssText += 'overflow:hidden;' +
           'width:' + w + ';' +
           'height:' + h + ';' +
           'padding:0;' +
           'margin:0;' +
           'border-radius:0;' +
           'border:none;';
-      mediaItem.style.cssText = 'transform:translate(' + x + ',' + y + ');' +
+      mediaItem.style.cssText += 'transform:translate(' + x + ',' + y + ');' +
           '-webkit-transform:translate(' + x + ',' + y + ');';
       // Evil DOM operations
       mediaItem.parentNode.insertBefore(wrapper, mediaItem);
@@ -128,7 +128,7 @@ var mediaFragments = (function(window, document) {
       }
     // Media item is an image
     } else {
-      mediaItem.style.cssText = 'width:' + w + ';' +
+      mediaItem.style.cssText += 'width:' + w + ';' +
           'height:' + h + ';' +
           'background:url(' + mediaItem.src + ') ' + // background-image
           'no-repeat ' + // background-repeat
