@@ -146,12 +146,10 @@ var mediaFragments = (function(window, document) {
 
   return {
     /**
-     * Initializes the media fragment application process. Pretty useless for
-     * now, but may prove useful in the future for more advanced intermediate
-     * steps.
+     * Manually initializes the media fragment application process.
      */
-    apply: function apply() {
-      getAllMediaItems();
+    apply: function apply(opt_startElement) {
+      getAllMediaItems(opt_startElement);
     }
   };
 
