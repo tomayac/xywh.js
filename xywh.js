@@ -9,7 +9,7 @@
  * existing style definitions that could affect the wrapper element.
  *
  * @author: Thomas Steiner (tomac@google.com)
- * @version: 0.0.1
+ * @version: 0.0.2
  * @license: CC0
  */
 var mediaFragments = (function(window, document) {
@@ -146,8 +146,9 @@ var mediaFragments = (function(window, document) {
 
   return {
     /**
-     * Initializes the media fragment application process. Pretty useless for now,
-     * but may prove useful in the future for more advanced intermediate steps.
+     * Initializes the media fragment application process. Pretty useless for
+     * now, but may prove useful in the future for more advanced intermediate
+     * steps.
      */
     apply: function apply() {
       getAllMediaItems();
