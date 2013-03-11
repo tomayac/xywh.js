@@ -1,12 +1,12 @@
 xywh.js
 =======
 
-xywh.js implements the spatial media fragments dimension of the W3C Media Fragments URI specification as a polyfill. See http://www.w3.org/TR/media-frags/#naming-space for the full details.
+xywh.js is a JavaScript polyfill that lets you crop images and videos simply by using specific x, y, width, and height information from their URIs (see [mark-up examples](https://github.com/tomayac/xywh.js#mark-up) below).﻿The library implements the spatial media fragments dimension of the W3C Media Fragments URI specification as a polyfill. Please refer to http://www.w3.org/TR/media-frags/#naming-space for the full details.
 
 Demo
 ====
 
-See http://tomayac.github.com/xywh.js/demo.html
+See http://tomayac.github.com/xywh.js/demo.html.
 
 Usage
 =====
