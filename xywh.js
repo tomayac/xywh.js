@@ -13,7 +13,6 @@
  * @license: CC0
  */
 var mediaFragments = (function(window, document) {
-  var DEBUG = false;
   /**
    * Retrieves all media items with a spatial fragment identifier
    */
@@ -41,10 +40,41 @@ var mediaFragments = (function(window, document) {
           w: match[4],
           h: match[5]
         };
-        if (DEBUG) console.log(match[0]);
-        applyFragment(mediaFragment);
+        if (mediaFragment.mediaType === 'img') {
+          addImageLoadListener(mediaFragment);
+        } else {
+          addVideoLoadListener(mediaFragment);
+        }
       }
     }
+  }
+
+  /**
+   * Applies the media fragment when the image has loaded. We need the image's
+   * original width and height.
+   */
+  function addImageLoadListener(mediaFragment) {
+    var mediaItem = mediaFragment.mediaItem;
+    var onload = function() {
+      applyFragment(mediaFragment);
+      // Removes the load listener from  the image, so that it doesn't fire
+      // again when we set the image's @src to a transparent 1x1 GIF, but only
+      // once when the initial image has fully loaded
+      mediaItem.removeEventListener('load', onload);
+      // Base64-encoded transparent 1x1 pixel GIF
+      mediaItem.src = 'data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==';
+    };
+    mediaItem.addEventListener('load', onload);
+  }
+
+  /**
+   * Applies the media fragment when all metadata of the video have loaded. We
+   * need the video's original width and height.
+   */
+  function addVideoLoadListener(mediaFragment) {
+    mediaFragment.mediaItem.addEventListener('loadedmetadata', function() {
+      applyFragment(mediaFragment);
+    });
   }
 
   /**
@@ -79,17 +109,15 @@ var mediaFragments = (function(window, document) {
     // Media item is a video
     if (fragment.mediaType === 'video') {
       var wrapper = document.createElement('div');
-      wrapper.setAttribute('style',
-          'overflow:hidden;' +
+      wrapper.style.cssText = 'overflow:hidden;' +
           'width:' + w + ';' +
           'height:' + h + ';' +
           'padding:0;' +
           'margin:0;' +
           'border-radius:0;' +
-          'border:none;');
-      mediaItem.setAttribute('style',
-          'transform:translate(' + x + ',' + y + ');' +
-          '-webkit-transform:translate(' + x + ',' + y + ');');
+          'border:none;';
+      mediaItem.style.cssText = 'transform:translate(' + x + ',' + y + ');' +
+          '-webkit-transform:translate(' + x + ',' + y + ');';
       // Evil DOM operations
       mediaItem.parentNode.insertBefore(wrapper, mediaItem);
       wrapper.appendChild(mediaItem);
@@ -100,21 +128,19 @@ var mediaFragments = (function(window, document) {
       }
     // Media item is an image
     } else {
-      mediaItem.setAttribute('style',
-          'width:' + w + ';' +
+      mediaItem.style.cssText = 'width:' + w + ';' +
           'height:' + h + ';' +
           'background:url(' + mediaItem.src + ') ' + // background-image
           'no-repeat ' + // background-repeat
-          x + ' ' + y + ';'); // background-position
-      // Base64-encoded transparent 1x1 pixel GIF
-      mediaItem.src = 'data:image/gif;base64,R0lGODlhAQABAPAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==';
+          x + ' ' + y + ';'; // background-position
     }
   }
 
   /**
-   * Starts the media fragment application process when the document has loaded.
+   * Starts the media fragment application process when the initial DOM for the
+   * page is completely loaded.
    */
-  window.addEventListener('load', function() {
+  window.addEventListener('DOMContentLoaded', function() {
     getAllMediaItems();
   });
 
