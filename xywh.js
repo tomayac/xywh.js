@@ -91,16 +91,18 @@ var mediaFragments = (function(window, document) {
   function applyFragment(fragment) {
     var mediaItem = fragment.mediaItem;
     var x, y, w, h;
+    var scale=1;
+    var originalWidth = mediaItem.width;
+    var originalHeight = mediaItem.height;
     // Unit is pixel:
     if (fragment.unit === 'pixel:') {
-      w = fragment.w + 'px';
-      h = fragment.h + 'px';
-      x = '-' + fragment.x + 'px';
-      y = '-' + fragment.y + 'px';
+      scale = originalWidth/mediaItem.naturalWidth;	
+      w = fragment.w*scale + 'px';
+      h = fragment.h*scale + 'px';
+      x = '-' + fragment.x*scale + 'px';
+      y = '-' + fragment.y*scale + 'px';
     // Unit is percent:
     } else {
-      var originalWidth = mediaItem.width || mediaItem.videoWidth;
-      var originalHeight = mediaItem.height || mediaItem.videoHeight;
       w = (originalWidth * fragment.w / 100) + 'px';
       h = (originalHeight * fragment.h / 100) + 'px';
       x = '-' + (originalWidth * fragment.x / 100) + 'px';
@@ -132,7 +134,8 @@ var mediaFragments = (function(window, document) {
           'height:' + h + ';' +
           'background:url(' + mediaItem.src + ') ' + // background-image
           'no-repeat ' + // background-repeat
-          x + ' ' + y + ';'; // background-position
+          x + ' ' + y + '; ' + // background-position
+          'background-size: '+originalWidth+'px '+originalHeight+'px;'; 
     }
   }
 
