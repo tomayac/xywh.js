@@ -92,11 +92,12 @@ var mediaFragments = (function(window, document) {
     var mediaItem = fragment.mediaItem;
     var x, y, w, h;
     var scale=1;
-    var originalWidth = mediaItem.width;
-    var originalHeight = mediaItem.height;
+    var originalWidth = mediaItem.width || mediaItem.videoWidth;
+    var originalHeight = mediaItem.height || mediaItem.videoHeight;
     // Unit is pixel:
     if (fragment.unit === 'pixel:') {
-      scale = originalWidth/mediaItem.naturalWidth;	
+      if(fragment.mediaType==='video') scale=1;
+      else scale = originalWidth/mediaItem.naturalWidth;	
       w = fragment.w*scale + 'px';
       h = fragment.h*scale + 'px';
       x = '-' + fragment.x*scale + 'px';
