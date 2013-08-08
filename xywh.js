@@ -91,16 +91,19 @@ var mediaFragments = (function(window, document) {
   function applyFragment(fragment) {
     var mediaItem = fragment.mediaItem;
     var x, y, w, h;
+    var originalWidth = mediaItem.width || mediaItem.videoWidth;
+    var originalHeight = mediaItem.height || mediaItem.videoHeight;
     // Unit is pixel:
     if (fragment.unit === 'pixel:') {
-      w = fragment.w + 'px';
-      h = fragment.h + 'px';
-      x = '-' + fragment.x + 'px';
-      y = '-' + fragment.y + 'px';
+      var scale = mediaItem.naturalWidth ?
+          originalWidth / mediaItem.naturalWidth :
+          originalWidth / mediaItem.clientWidth;
+      w = fragment.w * scale + 'px';
+      h = fragment.h * scale + 'px';
+      x = '-' + fragment.x * scale + 'px';
+      y = '-' + fragment.y * scale + 'px';
     // Unit is percent:
     } else {
-      var originalWidth = mediaItem.width || mediaItem.videoWidth;
-      var originalHeight = mediaItem.height || mediaItem.videoHeight;
       w = (originalWidth * fragment.w / 100) + 'px';
       h = (originalHeight * fragment.h / 100) + 'px';
       x = '-' + (originalWidth * fragment.x / 100) + 'px';
@@ -109,14 +112,16 @@ var mediaFragments = (function(window, document) {
     // Media item is a video
     if (fragment.mediaType === 'video') {
       var wrapper = document.createElement('div');
-      wrapper.style.cssText += 'overflow:hidden;' +
+      wrapper.style.cssText +=
+          'overflow:hidden;' +
           'width:' + w + ';' +
           'height:' + h + ';' +
           'padding:0;' +
           'margin:0;' +
           'border-radius:0;' +
           'border:none;';
-      mediaItem.style.cssText += 'transform:translate(' + x + ',' + y + ');' +
+      mediaItem.style.cssText +=
+          'transform:translate(' + x + ',' + y + ');' +
           '-webkit-transform:translate(' + x + ',' + y + ');';
       // Evil DOM operations
       mediaItem.parentNode.insertBefore(wrapper, mediaItem);
@@ -128,11 +133,13 @@ var mediaFragments = (function(window, document) {
       }
     // Media item is an image
     } else {
-      mediaItem.style.cssText += 'width:' + w + ';' +
+      mediaItem.style.cssText +=
+          'width:' + w + ';' +
           'height:' + h + ';' +
           'background:url(' + mediaItem.src + ') ' + // background-image
           'no-repeat ' + // background-repeat
-          x + ' ' + y + ';'; // background-position
+          x + ' ' + y + '; ' + // background-position
+          'background-size: ' + originalWidth + 'px ' + originalHeight + 'px;';
     }
   }
 
