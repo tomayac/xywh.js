@@ -91,17 +91,17 @@ var mediaFragments = (function(window, document) {
   function applyFragment(fragment) {
     var mediaItem = fragment.mediaItem;
     var x, y, w, h;
-    var scale=1;
     var originalWidth = mediaItem.width || mediaItem.videoWidth;
     var originalHeight = mediaItem.height || mediaItem.videoHeight;
     // Unit is pixel:
     if (fragment.unit === 'pixel:') {
-      if(fragment.mediaType==='video') scale=1;
-      else scale = originalWidth/mediaItem.naturalWidth;	
-      w = fragment.w*scale + 'px';
-      h = fragment.h*scale + 'px';
-      x = '-' + fragment.x*scale + 'px';
-      y = '-' + fragment.y*scale + 'px';
+      var scale = mediaItem.naturalWidth ?
+          originalWidth / mediaItem.naturalWidth :
+          originalWidth / mediaItem.clientWidth;
+      w = fragment.w * scale + 'px';
+      h = fragment.h * scale + 'px';
+      x = '-' + fragment.x * scale + 'px';
+      y = '-' + fragment.y * scale + 'px';
     // Unit is percent:
     } else {
       w = (originalWidth * fragment.w / 100) + 'px';
@@ -112,14 +112,16 @@ var mediaFragments = (function(window, document) {
     // Media item is a video
     if (fragment.mediaType === 'video') {
       var wrapper = document.createElement('div');
-      wrapper.style.cssText += 'overflow:hidden;' +
+      wrapper.style.cssText +=
+          'overflow:hidden;' +
           'width:' + w + ';' +
           'height:' + h + ';' +
           'padding:0;' +
           'margin:0;' +
           'border-radius:0;' +
           'border:none;';
-      mediaItem.style.cssText += 'transform:translate(' + x + ',' + y + ');' +
+      mediaItem.style.cssText +=
+          'transform:translate(' + x + ',' + y + ');' +
           '-webkit-transform:translate(' + x + ',' + y + ');';
       // Evil DOM operations
       mediaItem.parentNode.insertBefore(wrapper, mediaItem);
@@ -131,12 +133,13 @@ var mediaFragments = (function(window, document) {
       }
     // Media item is an image
     } else {
-      mediaItem.style.cssText += 'width:' + w + ';' +
+      mediaItem.style.cssText +=
+          'width:' + w + ';' +
           'height:' + h + ';' +
           'background:url(' + mediaItem.src + ') ' + // background-image
           'no-repeat ' + // background-repeat
           x + ' ' + y + '; ' + // background-position
-          'background-size: '+originalWidth+'px '+originalHeight+'px;'; 
+          'background-size: ' + originalWidth + 'px ' + originalHeight + 'px;';
     }
   }
 
