@@ -18,6 +18,10 @@
       .videos {
         background-color: #FAFAD2;
       }
+      img{
+        max-width:100%;
+        max-height:100%;
+      }
     </style>
   </head>
   <body>
@@ -36,12 +40,20 @@
       <br/>
       <img src="./demo_assets/cat.jpg#xywh=160,120,320,240">
       <br/>
+      #xywh=160,120,320,240, resized
+      <br/>
+      <img style="width:900px;" src="./demo_assets/cat.jpg#xywh=160,120,320,240">
+      <br/>
       #xywh=percent:25,25,50,50
       <br/>
       <img src="./demo_assets/cat.jpg#xywh=percent:25,25,50,50">
       <br/>
+      #xywh=percent:25,25,50,50, resized
+      <br/>
+      <img style="width:1900px;" src="./demo_assets/cat.jpg#xywh=percent:25,25,50,50">
+      <br/>
       Normal
-      <br/cat>
+      <br/>
       <img src="./demo_assets/cat.jpg">
     </div>
     <div class="videos">
@@ -100,6 +112,6 @@
       <a href="http://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0 Universal (CC0 1.0)</a> license.
     </div>
 
-    <script src="xywh_min.js"></script>
+    <script src="xywh.js"></script>
   </body>
 </html>
