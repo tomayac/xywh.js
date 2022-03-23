@@ -6,7 +6,7 @@ xywh.js is a JavaScript polyfill that lets you crop images and videos simply by 
 Demo
 ====
 
-See http://tomayac.github.com/xywh.js/demo.html.
+See https://tomayac.github.io/xywh.js/demo.html.
 
 Usage
 =====
